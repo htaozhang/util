@@ -1,11 +1,13 @@
 
 
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.7)
 project(util VERSION 1.0 LANGUAGES C CXX)
 
-# set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED OFF)
 
-# set(CMAKE_CXX_STANDARD C++11)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(UTIL_BUILD_TESTS "Build util's unit tests" ON)
 

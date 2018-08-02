@@ -10,11 +10,19 @@
 #
 #================================================================
 
+FLAG=""
+if [ $# -lt 1 ]; then
+    FLAG=
+elif [ "$1"x = "MinGW"x ]; then
+    FLAG="-G 'MinGW Makefiles'"
+elif [ "$1"x = "Xcode"x ]; then
+    FLAG="-G Xcode"
+fi
+
 rm -rf build
 mkdir -p build
 cd build
-cmake .. #-G "MSYS Makefiles"
+cmake .. ${FLAG}
 
-
-#make
+[ "${FLAG}"x = ""x ] && make
 
