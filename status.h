@@ -7,6 +7,8 @@
 #ifndef UTIL_STATUS_H
 #define UTIL_STATUS_H
 
+#include "slice.h"
+
 namespace util {
 
 class Status {

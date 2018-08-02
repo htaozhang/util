@@ -7,7 +7,18 @@ project(util VERSION 1.0 LANGUAGES C CXX)
 
 # set(CMAKE_CXX_STANDARD C++11)
 
-option(UTIL_BUILD_TESTS "Build util's unit tests" ON)
+option(UTIL_BUILD_TESTS "Build util's unit tests" OFF)
+
+add_library(util "")
+
+target_sources(util
+  PRIVATE
+    "${PROJECT_SOURCE_DIR}/slice.h"
+    "${PROJECT_SOURCE_DIR}/status.h"
+    "${PROJECT_SOURCE_DIR}/status.cc"
+    "${PROJECT_SOURCE_DIR}/testshell.h"
+    "${PROJECT_SOURCE_DIR}/testshell.cc"
+)
 
 if (UTIL_BUILD_TESTS)
   enable_testing()
@@ -19,6 +30,9 @@ if (UTIL_BUILD_TESTS)
     
     target_sources("${test_target_name}"
       PRIVATE
+        "${PROJECT_SOURCE_DIR}/util/testshell.cc"
+        "${PROJECT_SOURCE_DIR}/util/testshell.h"
+
         "${test_file}"
     )
 
@@ -27,13 +41,11 @@ if (UTIL_BUILD_TESTS)
     add_test(NAME "${test_target_name}" COMMAND "${test_target_name}")
   endfunction(util_test)
 
-  set(BUILD_GTEST ON)
-  set(BUILD_GMOCK OFF)
-  set(BUILD_SHARED_LIBS OFF)
-  
-  mark_as_advanced(BUILD_GTEST)
-
-  add_subdirectory(thirdparty/googletest)
+  # set(BUILD_GTEST ON)
+  # set(BUILD_GMOCK OFF)
+  # set(BUILD_SHARED_LIBS OFF)
+  # mark_as_advanced(BUILD_GTEST)
+  # add_subdirectory(thirdparty/googletest)
 
 endif (UTIL_BUILD_TESTS)
 

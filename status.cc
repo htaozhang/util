@@ -4,7 +4,7 @@
 // Copy from google/leveldb
 // 
 
-#include "./status.h"
+#include "status.h"
 
 namespace util {
 
