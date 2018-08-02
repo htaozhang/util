@@ -4,13 +4,22 @@
 //
 
 #include "status.h"
+#include "testshell.h"
+
+#include <utility>
 
 namespace util {
+
+TEST(Status, MoveConstructor) {
+  {
+    Status ok = Status::OK();
+    ASSERT_TRUE(ok.ok());
+  }
+}
 
 }
 
 int main(int argc, char** argv) {
-
-  return 0;
+  return util::test::RunAllTests();
 }
 

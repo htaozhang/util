@@ -30,6 +30,14 @@ class Tester {
     }
   }
 
+  Tester& Is(bool c, const char* msg) {
+    if (!c) {
+      ss_ << " Assertion failure " << msg;
+      ok_ = false;
+    }
+    return *this;
+  }
+
 #define BINARY_COMPARE(name, op)                      \
   template<typename X, typename Y>                    \
   Tester& name(const X& x, const Y& y) {              \
@@ -50,7 +58,7 @@ class Tester {
 
 };
 
-#define ASSERT_TRUE
+#define ASSERT_TRUE(c)  ::util::test::Tester(__FILE__, __LINE__).Is((c), #c)
 #define ASSERT_EQ(x, y) ::util::test::Tester(__FILE__, __LINE__).IsEq((x), (y))
 #define ASSERT_NE(x, y) ::util::test::Tester(__FILE__, __LINE__).IsNe((x), (y))
 #define ASSERT_GE(x, y) ::util::test::Tester(__FILE__, __LINE__).IsGe((x), (y))
@@ -77,6 +85,8 @@ void TCONCAT(_Test_, name)::_Run()
 
 
 bool RegisterTest(const char* base, const char* name, void (*func)());
+
+int RunAllTests();
 
 } // namespace test
 
