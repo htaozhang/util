@@ -10,11 +10,12 @@
 #
 #================================================================
 
-FLAG=""
 if [ $# -lt 1 ]; then
     FLAG=
 elif [ "$1"x = "MinGW"x ]; then
     FLAG="-G 'MinGW Makefiles'"
+elif [ "$1"x = "MSYS"x ]; then
+    FLAG="-G 'MSYS Makefiles'"
 elif [ "$1"x = "Xcode"x ]; then
     FLAG="-G Xcode"
 fi

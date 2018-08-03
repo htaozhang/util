@@ -57,18 +57,17 @@ class Tester {
 #undef BINARY_COMPARE
 
 };
+#define _TESTER ::util::test::Tester(__FILE__, __LINE__)
+#define ASSERT_TRUE(c)  _TESTER.Is((c), #c)
+#define ASSERT_EQ(x, y) _TESTER.IsEq((x), (y))
+#define ASSERT_NE(x, y) _TESTER.IsNe((x), (y))
+#define ASSERT_GE(x, y) _TESTER.IsGe((x), (y))
+#define ASSERT_GT(x, y) _TESTER.IsGt((x), (y))
+#define ASSERT_LE(x, y) _TESTER.IsLe((x), (y))
+#define ASSERT_LT(x, y) _TESTER.IsLt((x), (y))
 
-#define ASSERT_TRUE(c)  ::util::test::Tester(__FILE__, __LINE__).Is((c), #c)
-#define ASSERT_EQ(x, y) ::util::test::Tester(__FILE__, __LINE__).IsEq((x), (y))
-#define ASSERT_NE(x, y) ::util::test::Tester(__FILE__, __LINE__).IsNe((x), (y))
-#define ASSERT_GE(x, y) ::util::test::Tester(__FILE__, __LINE__).IsGe((x), (y))
-#define ASSERT_GT(x, y) ::util::test::Tester(__FILE__, __LINE__).IsGt((x), (y))
-#define ASSERT_LE(x, y) ::util::test::Tester(__FILE__, __LINE__).IsLe((x), (y))
-#define ASSERT_LT(x, y) ::util::test::Tester(__FILE__, __LINE__).IsLt((x), (y))
-
-
-#define TCONCAT(a, b) _TCONCAT(a, b)
 #define _TCONCAT(a, b) a##b
+#define TCONCAT(a, b) _TCONCAT(a, b)
 
 #define TEST(base, name)                                                     \
 class TCONCAT(_Test_, name) : public base {                                  \
